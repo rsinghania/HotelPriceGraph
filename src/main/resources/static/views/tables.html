@@ -1,0 +1,81 @@
+<div id="spinnerModal" class="modal fade">
+	<div id="spinnerPage" class="spinner-page">
+		<img id="img-spinner" src="images/spin.gif" alt="Loading" />
+	</div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<section class="nav nav-tabs ng-scope"
+	style="border-bottom: 1px solid #ddd;">
+	<div ng-controller="tablesController" style="padding-left: 15px">
+		<div class="ng-scope">
+			<div class="row ng-scope">
+				<div class="col-md-4 search">
+					<div class="row">
+						<div class="col-md-10">
+							<span class="searchTableDrop"> <select chosen
+								ng-model="selected" data-placeholder="Select a City"
+								ng-options="table.cityName for table in tableList">
+									<option value=""></option>
+							</select>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div layout-gt-xs="row">
+			<div flex-gt-xs>
+				<h4>CheckIn Date</h4>
+				<md-datepicker ng-model="checkInDate"
+					md-placeholder="Enter date"
+						ng-change="validCheckOutDate()"></md-datepicker>
+			</div>
+
+			<div flex-gt-xs>
+				<h4>Check out Date</h4>
+				<md-datepicker ng-model="checkOutDate"
+					md-placeholder="Enter date"
+					md-min-date="minDate"></md-datepicker>
+			</div>
+		</div>
+		
+	<br/><br/>
+	
+		<div ng-cloak layout-gt-sm="row" layout="column" class="comparisonChart">
+			<div flex-gt-sm="20" flex>
+				<md-toolbar layout="row" class="md-hue-3">
+				<div class="md-toolbar-tools">
+					<span>Select Name</span>
+				</div>
+				</md-toolbar>
+				<md-content> <md-list class="make-scrollable" flex>
+				<md-list-item class="md-3-line" ng-repeat="item in hotelList"
+					ng-click="fetchHotelPriceDetails()"> <img
+					ng-src="{{item.hotel_data_node.img_selected.thumb.l}}?{{$index}}"
+					class="md-avatar" alt="" />
+				<div class="md-list-item-text" layout="column">
+					<h3>{{item.hotel_data_node.name}}</h3>
+					Rating :
+					<h4>{{item.hotel_data_node.extra.gir_data.hotel_rating}}</h4>
+				</div>
+				</md-list-item> </md-list> </md-content>
+			</div>
+
+			<div flex-gt-sm="80" flex>
+				<md-toolbar layout="row" class="md-hue-3">
+				<div class="md-toolbar-tools">
+					<span>Comparison chart</span>
+				</div>
+				</md-toolbar>
+				<md-content> <md-list flex> <chart
+					title="Compare" xData="lineChartXData" yData="lineChartYData"
+					xName="Month" yName="Hit" subtitle="Price comparison"></chart> </md-list> </md-content>
+			</div>
+		</div>
+	</div>
+</section>
