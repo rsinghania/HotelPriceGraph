@@ -36,7 +36,7 @@ public class MainController {
     public List<City> fetchpriceDetails(String cityId, String checkInDate, String checkOutDate) throws IOException {
 	
 	try {
-
+	    List<Object> test= new ArrayList<Object>();
 	    URL url = new URL("http://developer.goibibo.com/api/cyclone/?app_id=4663135e&app_key=73a217a9461375e465dd4be077800f32&city_id=" + cityId
 		    + "&check_in=" + checkInDate + "&check_out=" + checkOutDate + "");
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -53,8 +53,9 @@ public class MainController {
 	    System.out.println("Output from Server .... \n");
 	    while ((output = br.readLine()) != null) {
 		System.out.println(output);
+		test.add(output);
 	    }
-
+	    CacheLocalConfig.putInCache("cacheListWithPrice", test);
 	    conn.disconnect();
 
 	} catch (MalformedURLException e) {

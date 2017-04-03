@@ -39,12 +39,11 @@ app
             $scope.lineChartYData = data.yData;
             $scope.lineChartXData = data.xData;
 
-            
+       
             
             $scope.fetchCityHotels = function() {
                 $http
-                    .get(
-                        "http://developer.goibibo.com/api/cyclone/?app_id=4663135e&app_key=73a217a9461375e465dd4be077800f32&city_id="+$scope.selected.cityId+"&check_in=20170422&check_out=20170423")
+                    .get("http://developer.goibibo.com/api/cyclone/?app_id=4663135e&app_key=73a217a9461375e465dd4be077800f32&city_id="+$scope.selected.cityId)
                     .success(function(posts) {
                         $scope.hotelList = posts.data;
                     	$('.dateSelection').show();
@@ -53,15 +52,31 @@ app
 
             };
 
-            $scope.fetchHotelDetails = function() {
-                $scope.hotelDetail = $resource(
-                    "http://developer.goibibo.com/api/voyager/?app_id=4663135e&app_key=73a217a9461375e465dd4be077800f32&method=hotels.get_hotels_data&id_list=[" +
-                    this.item.hotel_data_node._id +
-                    "]&id_type=_id").query();
-            };
-
             $scope.fetchHotelPriceDetails = function() {
-            	$scope.hotelPriceDetails = $resource("http://developer.goibibo.com/api/cyclone/?app_id=4663135e&app_key=73a217a9461375e465dd4be077800f32&city_id="+$scope.selected.cityId+"&check_in=20170423&check_out=20170423"
+            	
+            	var checkInMonth='';
+            	if($scope.checkInDate.getMonth()>9){
+            		checkInMonth= $scope.checkInDate.getMonth()+1;
+            	}else{
+            		checkInMonth=$scope.checkOutDate.getMonth()+1;
+            		checkInMonth="0"+checkInMonth+"";
+            	}
+            			
+            	var params = {
+            			 cityId :$scope.selected.cityId,
+            			 checkInDate:""+$scope.checkInDate.getFullYear()+""+checkInMonth+""+$scope.checkInDate.getDate()+"",  
+            			 checkOutDate:""+$scope.checkOutDate.getFullYear()+""+checkInMonth+""+$scope.checkOutDate.getDate()+"",
+            		};
+            	
+            	$http({
+            	    method: 'GET',
+            	    url: 'getPriceDetails',
+            	    params: params})
+                 .success(function(posts) {
+                	 
+                     $scope.hotelList = posts.data;
+                     
+                 });
             };
 
         });
