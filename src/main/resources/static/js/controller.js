@@ -61,11 +61,32 @@ app
             		checkInMonth=$scope.checkOutDate.getMonth()+1;
             		checkInMonth="0"+checkInMonth+"";
             	}
+            	var next5DatesToSearch=[];
+            	
+            	 for (var i=1; i<5; i++) {
+            		 
+            		 var d1= new Date($scope.checkInDate.getFullYear(),
+     						$scope.checkInDate.getMonth(), $scope.checkInDate
+     								.getDate() + i);
+            		 
+            		 var d2= new Date($scope.checkOutDate.getFullYear(),
+      						$scope.checkOutDate.getMonth(), $scope.checkOutDate
+								.getDate() + i);
+            		 
+            		var d1= ""+d1.getFullYear()+""+checkInMonth+""+d1.getDate()+""
+            		 var d2=""+d2.getFullYear()+""+checkInMonth+""+d2.getDate()+""
+            		next5DatesToSearch.push(d1);
+            		next5DatesToSearch.push(d2);
+            	  }
+            	 
+            	
+            	
             			
             	var params = {
             			 cityId :$scope.selected.cityId,
             			 checkInDate:""+$scope.checkInDate.getFullYear()+""+checkInMonth+""+$scope.checkInDate.getDate()+"",  
             			 checkOutDate:""+$scope.checkOutDate.getFullYear()+""+checkInMonth+""+$scope.checkOutDate.getDate()+"",
+            			 next5Dates : next5DatesToSearch
             		};
             	
             	$http({

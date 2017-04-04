@@ -32,35 +32,46 @@
 		</dependency>
 
 		<dependency>
-    		<groupId>com.oracle</groupId>
-    		<artifactId>ojdbc6</artifactId>
-    		<version>12.1.0.2</version>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>12.1.0.2</version>
 		</dependency>
-		
+
 		<dependency>
-    		<groupId>oracle</groupId>
-    		<artifactId>security</artifactId>
-    		<version>oraclepki</version>
+			<groupId>oracle</groupId>
+			<artifactId>security</artifactId>
+			<version>oraclepki</version>
 		</dependency>
-    
+
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>jquery-ui</artifactId>
-		    <version>1.11.4</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui</artifactId>
+			<version>1.11.4</version>
 		</dependency>
-		    
+
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>angular-bootstrap-confirm</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-		 
-		 
-		 <dependency>
- <groupId>com.hazelcast</groupId>
- <artifactId>hazelcast</artifactId>
- <!-- Version is managed by Spring Boot starter -->
-</dependency>
-		    
+
+
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-core</artifactId>
+			<version>1.5.0.final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-spring</artifactId>
+			<version>1.5.0.final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>
